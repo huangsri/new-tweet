@@ -13,13 +13,13 @@
   <p><strong>@<%= tweet.user.username %></strong></p>
   <p><%= tweet.content %></p>
   <p><%= time_ago_in_words(tweet.created_at) %> ago</p>
-  <% if tweet.likes.include?(current_user.id) %>
-    <%= link_to tweet_path(tweet), method: :post, class: "heart" do %>
-      <%= fa_icon "heart", class: "heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
+  <% unless tweet.liking_users.find_by(id: current_user.id) %>
+    <%= link_to tweet_like_path(tweet), method: :post, class: "heart" do %>
+      <%= fa_icon "heart-o", class: "heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
     <% end %>
   <% else %>
-    <%= link_to tweet_path(tweet), method: :post, class: "heart" do %>
-      <%= fa_icon "heart-o", class: "icon icon__heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
+    <%= link_to tweet_like_path(tweet), method: :delete, class: "heart" do %>
+      <%= fa_icon "heart", class: "icon icon__heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
     <% end %>
   <% end %>
   <% if current_user.id == tweet.user.id %>

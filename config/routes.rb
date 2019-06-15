@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: 'tweets#index'
 
   resources :tweets, only: [:index, :create, :show, :destroy] do
-    post '/like' , to: 'tweets/like#create'
-    delete '/like' , to: 'tweets/like#destroy'
+    # get 'like', to: 'tweets/likes#index'
+    post 'like' , to: 'tweets/likes#create'
+    delete 'like' , to: 'tweets/likes#destroy'
   end
 end
