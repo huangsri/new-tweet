@@ -27,6 +27,5 @@
       <%= fa_icon "trash-o", class: 'icon icon__trash' %>
     <% end %>
   <% end %>
-  currentUser:<%= current_user.id %>
-  TweetUser:<%= tweet.user.id %>
+  <%= link_to 'View', tweet_path(tweet) %>
 <% end %>
