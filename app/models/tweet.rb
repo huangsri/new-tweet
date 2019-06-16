@@ -10,4 +10,19 @@ class Tweet < ApplicationRecord
 
   validates :content, presence: true
 
+  acts_as_taggable_on :tags
+  ActsAsTaggableOn.force_lowercase = true
+
+  before_save :add_tags
+
+  private
+  def add_tags
+    self.tag_list = extract_hash(self.content)
+  end
+  
+  def extract_hash(string)
+    regex = /(?:|^)#[A-Za-z0-9\-\.]+(?:|$)/
+    string.scan(regex).map { |item| item.gsub(/#/, "") }
+  end
+
 end

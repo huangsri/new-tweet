@@ -1,0 +1,7 @@
+<h1>Show</h1>
+<p><%= @user.username %></p>
+<p>Tweets: <%= @user.tweets.count %></p>
+<% @user.tweets.each do |tweet| %>
+  <p><%= tweet.content %></p>
+  <p><%= time_ago_in_words(tweet.created_at) %> ago</p>
+<% end %>

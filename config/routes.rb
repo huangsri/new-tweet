@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     get 'retweet', to: 'tweets/retweets#new'
     post 'retweet', to: 'tweets/retweets#create'
   end
+
+  get 'users/:id', to: 'users#show'
 end

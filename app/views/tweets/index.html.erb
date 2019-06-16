@@ -1,3 +1,9 @@
+<h2>Trending Now...</h2>
+<ul>
+  <% @trends.each do |trend| %>
+    <li><%= trend.name %> <%= trend.taggings_count %></li>
+  <% end %>
+</ul>
 <%= render 'tweet_form', path: tweets_path %>
 <% @tweets.each do |tweet| %>
   <p><strong>@<%= tweet.user.username %></strong></p>
