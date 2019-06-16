@@ -1,0 +1,9 @@
+<h4>Retweet</h4>
+<% if user_signed_in? %>
+  <div class="form__container">
+    <%= form_for Tweet.new, url: tweet_retweet_path, html: { class: "form__control" } do |f| %>
+      <%= f.text_area :retweet_content, size: "60x3", class: "input", placeholder: "What's happening ?" %>
+      <%= f.submit "Retweet", class: "btn" %>
+    <% end %>
+  </div>
+<% end %>

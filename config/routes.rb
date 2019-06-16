@@ -10,5 +10,8 @@ Rails.application.routes.draw do
     get 'reply', to: 'tweets/replies#new'
     post 'reply', to: 'tweets/replies#create'
     delete 'reply', to: 'tweets/replies#destroy'
+
+    get 'retweet', to: 'tweets/retweets#new'
+    post 'retweet', to: 'tweets/retweets#create'
   end
 end
