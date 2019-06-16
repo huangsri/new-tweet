@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   resources :tweets, only: [:index, :create, :show, :destroy] do
     # get 'like', to: 'tweets/likes#index'
-    post 'like' , to: 'tweets/likes#create'
-    delete 'like' , to: 'tweets/likes#destroy'
+    post 'like', to: 'tweets/likes#create'
+    delete 'like', to: 'tweets/likes#destroy'
+
+    get 'reply', to: 'tweets/replies#new'
+    post 'reply', to: 'tweets/replies#create'
+    delete 'reply', to: 'tweets/replies#destroy'
   end
 end

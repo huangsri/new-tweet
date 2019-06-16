@@ -1,31 +1,25 @@
-<% if user_signed_in? %>
-  <div class="form__container">
-    <%= form_for @tweet, html: { class: "form__control" } do |f| %>
-      <%= f.text_area :content, size: "60x3", required: true, class: "input", placeholder: "What's happening ?" %>
-      <%= f.submit "Tweet", class: "btn" %>
-    <% end %>
-  </div>
-<% else %>
-  <%= link_to 'Login', new_user_registration_path %>
-  <%= link_to 'Register', new_user_registration_path %>
-<% end %>
+<%= render 'tweet_form', path: tweets_path %>
 <% @tweets.each do |tweet| %>
   <p><strong>@<%= tweet.user.username %></strong></p>
   <p><%= tweet.content %></p>
   <p><%= time_ago_in_words(tweet.created_at) %> ago</p>
-  <% unless tweet.liking_users.find_by(id: current_user.id) %>
-    <%= link_to tweet_like_path(tweet), method: :post, class: "heart" do %>
-      <%= fa_icon "heart-o", class: "heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
+  <% if user_signed_in? %>
+    <%= link_to 'Reply', tweet_path(tweet) %>
+    <% unless tweet.liking_users.find_by(id: current_user.id) %>
+      <%= link_to tweet_like_path(tweet), method: :post, class: "heart" do %>
+        <%= fa_icon "heart-o", class: "heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
+      <% end %>
+    <% else %>
+      <%= link_to tweet_like_path(tweet), method: :delete, class: "heart" do %>
+        <%= fa_icon "heart", class: "icon icon__heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= link_to tweet_like_path(tweet), method: :delete, class: "heart" do %>
-      <%= fa_icon "heart", class: "icon icon__heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
-    <% end %>
-  <% end %>
-  <% if current_user.id == tweet.user.id %>
-    <%= link_to tweet, method: :delete, data: { confirm: 'Are you sure?' } do %>
-      <%= fa_icon "trash-o", class: 'icon icon__trash' %>
+    <% if current_user.id == tweet.user.id %>
+      <%= link_to tweet, method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <%= fa_icon "trash-o", class: 'icon icon__trash' %>
+      <% end %>
     <% end %>
   <% end %>
   <%= link_to 'View', tweet_path(tweet) %>
+  <hr>
 <% end %>

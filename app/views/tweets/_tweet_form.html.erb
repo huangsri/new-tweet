@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+  <div class="form__container">
+    <%= form_for Tweet.new, url: path, html: { class: "form__control" } do |f| %>
+      <%= f.text_area :content, size: "60x3", required: true, class: "input", placeholder: "What's happening ?" %>
+      <%= f.submit "Tweet", class: "btn" %>
+    <% end %>
+  </div>
+<% end %>
