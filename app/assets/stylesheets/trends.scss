@@ -1,0 +1,28 @@
+.trends {
+  &__container {
+    padding: 1.5rem;
+  }
+
+  &__heading {
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    margin-bottom: 1rem;
+
+    &-hash {
+      color: #91d2fa;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    &-count {
+      font-size: 1.4rem;
+      color: #657786;
+    }
+  }
+}

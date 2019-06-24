@@ -1,6 +1,10 @@
-<p><%= @tweet.content %></p>
-<p>Author: <%= @tweet.user.username %></p>
-<% if current_user %>
-  <%= render 'tweet_form', path: tweet_reply_path(@tweet) %>
-<% end %>
-<%= link_to 'Home', root_path %>
+<div class="tweet__container">
+  <%= link_to tweet_path(@tweet) do %>
+    <p class="tweet__author">@<%= @tweet.user.username %> · <span class="gray"><%= time_ago_in_words(@tweet.created_at) %> ago</span></p>
+    <p class="tweet__content"><%= @tweet.content %></p>
+  <% end %>
+  <%= render 'tweets/tweet_controller', tweet: @tweet %>
+</div>
+  <% if current_user %>
+    <%= render 'tweet_form', path: tweet_reply_path(@tweet), placeholder: "Add a reply..." %>
+  <% end %>

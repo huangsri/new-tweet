@@ -1,32 +1,10 @@
-<h2>Trending Now...</h2>
-<ul>
-  <% @trends.each do |trend| %>
-    <li><%= trend.name %> <%= trend.taggings_count %></li>
-  <% end %>
-</ul>
-<%= render 'tweet_form', path: tweets_path %>
-<% @tweets.each do |tweet| %>
-  <p><strong>@<%= tweet.user.username %></strong></p>
-  <p><%= tweet.content %></p>
-  <p><%= time_ago_in_words(tweet.created_at) %> ago</p>
-  <% if user_signed_in? %>
-    <%= link_to 'Reply', tweet_path(tweet) %>
-    <%= link_to 'Retweet', tweet_retweet_path(tweet) %>
-    <% unless tweet.liking_users.find_by(id: current_user.id) %>
-      <%= link_to tweet_like_path(tweet), method: :post, class: "heart" do %>
-        <%= fa_icon "heart-o", class: "heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
-      <% end %>
+<div class="list__container">
+  <%= render 'tweet_form', path: tweets_path, placeholder: "What's happening?" %>
+  <% @tweets.each do |tweet| %>
+    <% if tweet.retweet_content || tweet.parent && (tweet.content == tweet.parent.content) %>
+      <%= render 'retweet', tweet: tweet %>
     <% else %>
-      <%= link_to tweet_like_path(tweet), method: :delete, class: "heart" do %>
-        <%= fa_icon "heart", class: "icon icon__heart" %> <span class="color-red"> <%= tweet.likes.size %></span>
-      <% end %>
-    <% end %>
-    <% if current_user.id == tweet.user.id %>
-      <%= link_to tweet, method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <%= fa_icon "trash-o", class: 'icon icon__trash' %>
-      <% end %>
+      <%= render 'tweet', tweet: tweet %>
     <% end %>
   <% end %>
-  <%= link_to 'View', tweet_path(tweet) %>
-  <hr>
-<% end %>
+</div>

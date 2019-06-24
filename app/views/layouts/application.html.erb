@@ -9,6 +9,17 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <%= yield %>
+    <div class="container">
+      <div class="left">
+        <%= render 'users/profile', user: current_user %>
+        <%= render 'shared/trends', trends: @trends %>
+      </div>
+      <div class="box main">
+        <%= yield %>
+      </div>
+      <div class="box right">
+        Coming Soon...
+      </div>
+    </div>
   </body>
 </html>

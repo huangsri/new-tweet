@@ -1,5 +1,6 @@
 class Tweets::RetweetsController < ApplicationController
   def new
+    @tweet = Tweet.find(params[:tweet_id])
   end
 
   def create

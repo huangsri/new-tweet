@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <div class="tweet__controller z-index-1">
+    <%= link_to tweet_path(tweet), class: "tweet__controller-item" do %>
+      <%= fa_icon "comment-o 2x", class: "icon icon__comment" %> <span class="tweet__controller-label tweet__controller-label-primary"><%= tweet.replies.size > 0 ? tweet.replies.size : ""  %></span>
+    <% end %>
+    <%= link_to  tweet_retweet_path(tweet), class: "tweet__controller-item" do %>
+      <%= fa_icon "retweet 2x", class: 'icon icon__retweet' %> <span class="tweet__controller-label tweet__controller-label-green"><%= tweet.retweets.size > 0 ? tweet.retweets.size : "" %></span>
+    <% end %>
+    <% unless tweet.liking_users.find_by(id: current_user.id) %>
+      <%= link_to tweet_like_path(tweet), method: :post, class: "tweet__controller-item heart" do %>
+        <%= fa_icon "heart-o 2x", class: "icon icon__heart" %> <span class="tweet__controller-label tweet__controller-label-red"> <%= tweet.likes.size  > 0 ? tweet.likes.size : "" %></span>
+      <% end %>
+    <% else %>
+      <%= link_to tweet_like_path(tweet), method: :delete, class: "tweet__controller-item heart" do %>
+        <%= fa_icon "heart 2x", class: "icon icon__heart-fill" %> <span class="tweet__controller-label tweet__controller-label-red"> <%= tweet.likes.size  > 0 ? tweet.likes.size : ""  %></span>
+      <% end %>
+    <% end %>
+    <% if current_user.id == tweet.user.id %>
+      <%= link_to tweet, class: "tweet__controller-item", method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <%= fa_icon "trash-o 2x", class: 'icon icon__trash' %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

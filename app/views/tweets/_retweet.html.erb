@@ -1,0 +1,11 @@
+<div class="tweet__container z-index-1">
+  <p class="tweet__author">@<%= tweet.user.username %> · <span class="gray"><%= time_ago_in_words(tweet.created_at) %> ago</span></p>
+  <p><%= tweet.retweet_content %></p>
+  <%= link_to tweet_path(tweet.parent) do %>
+    <div class="retweet__container">
+      <p class="tweet__author">@<%= tweet.parent.user.username %> <span class="gray"><%= time_ago_in_words(tweet.parent.created_at) %> ago</span></p>
+      <p class="tweet__content"><%= tweet.content %></p>
+    </div>
+  <% end %>
+  <%= render 'tweets/tweet_controller', tweet: tweet %>
+</div>

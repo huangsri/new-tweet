@@ -1,12 +1,18 @@
-<nav>
-  <%= link_to tweets_path, class: "nav__logo" do %>
-    <%= fa_icon "twitter 2x", class: "color-primary" %>
-  <% end %>
+<nav class="nav">
+  <div class="nav__logo">
+    <%= link_to tweets_path do %>
+      <%= fa_icon "twitter 3x", class: "color-primary" %>
+    <% end %>
+  </div>
   <% if current_user %>
     <p class="nav__user">Welcome back, <strong><%= current_user.username %></strong></p>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav__links" %>
+    <div class="nav__links">
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav__links" %>
+    </div>
   <% else %>
-    <%= link_to 'Register', new_user_registration_path, class: "nav__links" %>
-    <%= link_to 'Login', new_user_session_path, class: "nav__links" %>
+  <div class="nav__links">
+    <%= link_to 'Register', new_user_registration_path, class: "mr-sm" %>
+    <%= link_to 'Login', new_user_session_path %>
+  </div>
   <% end %>
 </nav>

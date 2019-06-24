@@ -1,0 +1,19 @@
+.retweet {
+  &__container {
+    border: 1px solid #e6ecf0;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-top: 12px;
+
+    &:hover {
+      border-color: #aab8c2;
+    }
+  }
+
+  &__heading {
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #e6ecf0;
+  }
+}

@@ -1,3 +1,156 @@
-// Place all the styles related to the tweets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.list__container {
+}
+
+.tweet {
+  &__container {
+    background-color: #fff;
+    border-bottom: 1px solid #e6ecf0;
+    padding: 1.2rem;
+
+    &:hover {
+      background-color: #f5f8fa;
+    }
+  }
+
+  &__content {
+    // margin-bottom: 1.2rem;
+  }
+
+  &__controller {
+    margin: 1rem 0 0.5rem 1rem;
+    display: flex;
+
+    &-item {
+      min-width: 4rem;
+      display: flex;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-right: 4rem;
+      }
+
+      &:hover .tweet__controller-label-green,
+      &:hover .icon__retweet {
+        color: #17bf63;
+      }
+      &:hover .tweet__controller-label-red,
+      &:hover .icon__heart,
+      &:hover .icon__trash {
+        color: #e0245e;
+      }
+      &:hover .tweet__controller-label-primary,
+      &:hover .icon__comment {
+        color: #1da1f2;
+      }
+    }
+
+    i {
+      margin-right: 10px;
+    }
+
+    &-label {
+      color: #657786;
+      font-size: 1.6rem;
+
+      &-primary {
+        font-size: 1.6rem;
+      }
+
+      &-green {
+        font-size: 1.6rem;
+      }
+
+      &-red {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__author {
+    margin-bottom: 1rem;
+  }
+}
+
+.form {
+  &__container {
+    padding: 1.2rem;
+    border-bottom: 1px solid #e6ecf0;
+    border-top: none;
+    background-color: #f4fafe;
+  }
+}
+
+.textarea {
+  font-size: 1.4rem;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  border: 1px solid #d3edfd;
+  width: 100%;
+  resize: none;
+  margin-bottom: 0.5rem;
+  height: 36px;
+  transition: all 0.2s;
+
+  &:focus {
+    border-color: #d3edfd;
+    box-shadow: 0 0 0 1px #d3edfd;
+    outline: none;
+    height: 80px;
+
+    &::placeholder {
+      color: #aab8c2;
+    }
+  }
+
+  &::placeholder {
+    color: #91d2fa;
+  }
+}
+
+.btn {
+  outline: none;
+  border-radius: 100px;
+  padding: 0.6rem 1.6rem;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #a7dbfb;
+  background-color: #a7dbfb;
+
+  &-primary {
+    outline: none;
+    border-radius: 100px;
+    padding: 0.6rem 1.6rem;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    border: 1px solid #1da1f2;
+    background-color: #1da1f2;
+
+    &:hover {
+      border-color: #006dbf;
+      background-color: #006dbf;
+    }
+  }
+
+  &:hover {
+    border-color: #91d2fa;
+    background-color: #91d2fa;
+  }
+}
+
+.icon {
+  color: #657786;
+  &__heart-fill {
+    color: #e0245e;
+  }
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}

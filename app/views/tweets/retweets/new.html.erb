@@ -1,9 +1,20 @@
-<h4>Retweet</h4>
+<p class="retweet__heading">Retweet this to your followers?</p>
+
+<div class="tweet__container">
+  <%= link_to tweet_path(@tweet) do %>
+    <p class="tweet__author">@<%= @tweet.user.username %> · <span class="gray"><%= time_ago_in_words(@tweet.created_at) %> ago</span></p>
+    <p class="tweet__content"><%= @tweet.content %></p>
+  <% end %>
+  <%= render 'tweets/tweet_controller', tweet: @tweet %>
+</div>
+
 <% if user_signed_in? %>
   <div class="form__container">
     <%= form_for Tweet.new, url: tweet_retweet_path, html: { class: "form__control" } do |f| %>
-      <%= f.text_area :retweet_content, size: "60x3", class: "input", placeholder: "What's happening ?" %>
-      <%= f.submit "Retweet", class: "btn" %>
+      <%= f.text_area :retweet_content, size: "60x3", class: "input", placeholder: "Add a comment..." %>
+      <div class="flex-end">
+        <%= f.submit "Retweet", class: "btn" %>
+      </div>
     <% end %>
   </div>
 <% end %>

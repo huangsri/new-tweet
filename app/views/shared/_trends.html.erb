@@ -1,0 +1,13 @@
+<div class="trends__container">
+  <h2 class="trends__heading">Trending Now...</h2>
+  <ul class="trends__list">
+    <% trends.each do |trend| %>
+      <li class="trends__item">
+        <%= link_to "/tags/#{trend.name}" do %>
+          <p class="trends__item-hash">#<%= trend.name %></p>
+        <% end %>
+        <p class="trends__item-count"><%= trend.taggings_count %> Tweets</p>
+      </li>
+    <% end %>
+  </ul>
+</div>
