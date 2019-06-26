@@ -1,0 +1,15 @@
+<%= render 'shared/follow_nav', id: params[:id], activetab: 'following' %>
+<% if @followings.length > 0 %>
+  <div class="follow__header">
+    <%= @user.username %> is following ...
+  </div>
+  <% @followings.each do |user| %>
+    <%= render 'users/profile', user: user %>
+  <% end %>
+<% else %>
+  <div class="follow__header">
+    <%= @user.username %> hasn't followed anyone yet.
+  </div>
+<% end %>
+
+

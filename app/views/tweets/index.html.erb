@@ -1,10 +1,12 @@
 <div class="list__container">
   <%= render 'tweet_form', path: tweets_path, placeholder: "What's happening?" %>
-  <% @tweets.each do |tweet| %>
-    <% if tweet.retweet_content || tweet.parent && (tweet.content == tweet.parent.content) %>
-      <%= render 'retweet', tweet: tweet %>
-    <% else %>
-      <%= render 'tweet', tweet: tweet %>
+  <% unless @tweets.empty? %>
+    <% @tweets.each do |tweet| %>
+      <% if tweet.retweet_content || tweet.parent && (tweet.content == tweet.parent.content) %>
+        <%= render 'retweet', tweet: tweet %>
+      <% else %>
+        <%= render 'tweet', tweet: tweet %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

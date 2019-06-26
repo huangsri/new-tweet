@@ -14,3 +14,24 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+document.addEventListener("DOMContentLoaded", function() {
+  const pressed = [];
+  const secretCode = "`god";
+  const body = document.querySelector("body");
+  const button = document.querySelector(".audio-button");
+  const play = document.querySelector(".audio-play");
+
+  window.addEventListener("keyup", function(e) {
+    console.log(e.key);
+    pressed.push(e.key);
+    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+    if (pressed.join("").includes(secretCode)) {
+      console.log("DING DING!");
+      body.style.display = "none";
+    }
+  });
+  button.addEventListener("click", function() {
+    play.play();
+  });
+});

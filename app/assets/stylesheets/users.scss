@@ -2,6 +2,7 @@
   &__container {
     padding: 1.2rem;
     border-bottom: 1px solid #e6ecf0;
+    position: relative;
   }
 
   &__name {
@@ -12,8 +13,14 @@
   &__info {
     display: flex;
 
-    &-item:not(:last-child) {
-      margin-right: 2rem;
+    &-item {
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+
+      &:hover .user__info-label {
+        color: #91d2fa;
+      }
     }
 
     &-label {
@@ -59,4 +66,25 @@
 
 .field {
   margin-bottom: 1rem;
+}
+
+.thumbnail {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #e6ecf0;
+    }
+  }
+  &__name {
+    font-size: 1.6rem;
+  }
+  &__heading {
+    font-size: 1.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e6ecf0;
+  }
 }

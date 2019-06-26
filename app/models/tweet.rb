@@ -15,6 +15,10 @@ class Tweet < ApplicationRecord
 
   before_save :add_tags
 
+  def self.publish 
+    where("publish_at <= '#{Time.now}'").or(where(publish_at: nil))
+  end
+
   private
   def add_tags
     self.tag_list = extract_hash(self.content)
@@ -24,5 +28,7 @@ class Tweet < ApplicationRecord
     regex = /(?:|^)#[A-Za-z0-9\-\.]+(?:|$)/
     string.scan(regex).map { |item| item.gsub(/#/, "") }
   end
+
+
 
 end

@@ -1,0 +1,12 @@
+<div class="follow-nav__container">
+  <a href="/users/<%= "#{id}" %>/following" class="follow-nav__tab <%= activetab == 'following' ? "follow-nav__tab--active" : "" %>">
+    <div >
+        Following
+    </div>
+  </a>
+  <a href="/users/<%= "#{id}" %>/followers" class="follow-nav__tab <%= activetab == 'follower' ? "follow-nav__tab--active" : "" %>">
+    <div>
+          Followers
+    </div>
+  </a>
+</div>

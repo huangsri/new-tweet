@@ -1,19 +1,38 @@
 <% if current_user %>
   <div class="user__container">
-    <p class="user__name">@<%= user.username %></p>
+    <%= link_to user_path(user) do %>
+      <p class="user__name">@<%= user.username %></p>
+    <% end %>
     <div class="user__info">
       <div class="user__info-item">
         <p class="user__info-label">Tweets</p>
         <p class="user__info-number"> <%= user.tweets.count %></p>
       </div>
+        <div class="user__info-item">
+          <%= link_to following_path(user) do %>
+            <p class="user__info-label">Following</p>
+            <p class="user__info-number"> <%= user.following.count %></p>
+          <% end %>
+        </div>
       <div class="user__info-item">
-        <p class="user__info-label">Following</p>
-        <p class="user__info-number"> <%= user.tweets.count %></p>
+        <%= link_to followers_path(user) do %>
+          <p class="user__info-label">Followers</p>
+          <p class="user__info-number"> <%= user.followers.count %></p>
+        <% end %>
       </div>
-      <div class="user__info-item">
-        <p class="user__info-label">Followers</p>
-        <p class="user__info-number"> <%= user.tweets.count %></p>
-      </div>
+    </div>
+    <div class="user__follow">
+    <% unless user == current_user %>
+      <% if current_user.following.include?(user) %>
+        <%= link_to unfollow_user_path(user.id), method: :post do %>
+          <button class="btn--alt absolute">Unfollow</button>
+        <% end %>
+      <% else %>
+        <%= link_to follow_user_path(params[:id]), method: :post do  %>
+          <button class="btn absolute">Follow</button>
+        <% end %>
+      <% end %>
+    <% end %>
     </div>
   </div>
 <% end %>

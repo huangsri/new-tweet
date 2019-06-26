@@ -7,7 +7,8 @@ class Tweets::RetweetsController < ApplicationController
     parent_tweet = Tweet.find(params[:tweet_id])
     tweet = current_user.tweets.new(tweet_params)
     tweet.content = parent_tweet.content
-    if parent_tweet.replies << tweet
+    puts '=================== RETWEET ======================='
+    if parent_tweet.retweets << tweet
       redirect_to tweet_path(tweet)
     else
     end

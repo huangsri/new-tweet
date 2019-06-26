@@ -1,0 +1,12 @@
+<% unless current_user.following.include?(user) %>
+  <div class="thumbnail__container">
+    <div class="thumbnail__name">
+      @<%= user.username %>
+    </div>
+    <div class="user__follow">
+      <%= link_to follow_user_path(user.id), method: :post do  %>
+        <button class="btn">Follow</button>
+      <% end %>
+    </div>
+  </div>
+<% end %>

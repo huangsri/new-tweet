@@ -6,6 +6,7 @@
     background-color: #fff;
     border-bottom: 1px solid #e6ecf0;
     padding: 1.2rem;
+    transition: background-color 0.2s;
 
     &:hover {
       background-color: #f5f8fa;
@@ -24,6 +25,7 @@
       min-width: 4rem;
       display: flex;
       align-items: center;
+      transition: all 0.2;
 
       &:not(:last-child) {
         margin-right: 4rem;
@@ -116,8 +118,27 @@
   font-weight: bold;
   color: #fff;
   cursor: pointer;
-  border: 1px solid #a7dbfb;
-  background-color: #a7dbfb;
+  border: 1px solid #1da1f2;
+  background-color: #1da1f2;
+  transition: all 0.2s;
+
+  &--alt {
+    outline: none;
+    border-radius: 100px;
+    padding: 0.6rem 1.6rem;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #e0245e;
+    background-color: #e0245e;
+    transition: all 0.2s;
+
+    &:hover {
+      border: 1px solid #f989ac;
+      background-color: #f989ac;
+    }
+  }
 
   &-primary {
     outline: none;
@@ -153,4 +174,10 @@
 .flex-end {
   display: flex;
   justify-content: flex-end;
+}
+
+.absolute {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

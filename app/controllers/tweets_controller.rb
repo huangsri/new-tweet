@@ -2,8 +2,13 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @tweets = Tweet.order('created_at DESC')
+    # @tweets = Tweet.order('created_at DESC')
     @trends = ActsAsTaggableOn::Tag.most_used(10)
+    @tweets = if current_user 
+      current_user.get_tweets_by_following & Tweet.publish
+    else
+      Tweet.all.order('created_at DESC')
+    end
   end
 
   def create
@@ -28,6 +33,6 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.required(:tweet).permit(:content)
+    params.required(:tweet).permit(:content, :publish_at)
   end
 end

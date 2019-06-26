@@ -8,18 +8,28 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <%= audio_tag "twitter-sound.mp3", class: "audio-play"%>
     <%= render 'shared/navbar' %>
     <div class="container">
+    <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
       <div class="left">
         <%= render 'users/profile', user: current_user %>
         <%= render 'shared/trends', trends: @trends %>
       </div>
+    <% else %>
+      <div></div>
+    <% end %>
       <div class="box main">
         <%= yield %>
       </div>
+    <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
       <div class="box right">
-        Coming Soon...
+        <div class="thumbnail__heading">Who to follow</div>
+        <% @suggestions.each do |item| %>
+          <%= render 'shared/user_thumbnail', user: item %>
+        <% end %>
       </div>
+    <% end %>
     </div>
   </body>
 </html>

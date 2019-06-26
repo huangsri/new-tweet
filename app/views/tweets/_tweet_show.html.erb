@@ -1,3 +1,6 @@
+<% if tweet.parent %>
+  <%= render 'tweet_show', tweet: tweet.parent %>
+<% end %>
 <div class="tweet__container">
   <%= link_to user_path(tweet.user) do %>
     <p class="tweet__author">@<%= tweet.user.username %> · <span class="gray"><%= time_ago_in_words(tweet.created_at) %> ago</span></p>
