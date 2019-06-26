@@ -9,11 +9,11 @@
       
     <% end %>
     <% unless tweet.liking_users.find_by(id: current_user.id) %>
-      <%= link_to tweet_like_path(tweet), method: :post, class: "tweet__controller-item heart" do %>
+      <%= link_to tweet_like_path(tweet), method: :post, class: "tweet__controller-item heart", remote: true do %>
         <%= fa_icon "heart-o 2x", class: "icon icon__heart" %> <span class="tweet__controller-label tweet__controller-label-red"> <%= tweet.likes.size  > 0 ? tweet.likes.size : "" %></span>
       <% end %>
     <% else %>
-      <%= link_to tweet_like_path(tweet), method: :delete, class: "tweet__controller-item heart" do %>
+      <%= link_to tweet_like_path(tweet), method: :delete, class: "tweet__controller-item heart", remote: true do %>
         <%= fa_icon "heart 2x", class: "icon icon__heart-fill" %> <span class="tweet__controller-label tweet__controller-label-red"> <%= tweet.likes.size  > 0 ? tweet.likes.size : ""  %></span>
       <% end %>
     <% end %>

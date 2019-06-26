@@ -82,6 +82,19 @@
   }
 }
 
+.time {
+  display: none;
+  margin-left: 1rem;
+}
+
+.form-group {
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  display: inline-block;
+  padding: 5px;
+}
+
 .textarea {
   font-size: 1.4rem;
   padding: 0.8rem;

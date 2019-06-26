@@ -17,7 +17,6 @@ class TweetsController < ApplicationController
       redirect_to root_path
     else
     end
-
   end
 
   def show

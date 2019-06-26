@@ -64,3 +64,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "font-awesome-rails"
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'jquery-rails'

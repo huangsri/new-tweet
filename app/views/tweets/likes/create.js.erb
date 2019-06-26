@@ -1,0 +1,5 @@
+<% if @tweet.retweet_content || @tweet.parent && (@tweet.content == @tweet.parent.content) %>
+  $("#<%= @tweet.id %>").replaceWith("<%= j render 'tweets/retweet', tweet: @tweet %>");
+<% else %>
+  $("#<%= @tweet.id %>").replaceWith("<%= j render 'tweets/tweet', tweet: @tweet %>");
+<% end %>

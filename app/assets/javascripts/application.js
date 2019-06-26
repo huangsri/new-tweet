@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery
 
 document.addEventListener("DOMContentLoaded", function() {
   const pressed = [];
@@ -21,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const body = document.querySelector("body");
   const button = document.querySelector(".audio-button");
   const play = document.querySelector(".audio-play");
+  const checkbox = document.querySelector("#advance");
+  const dateInput = document.querySelector(".time");
 
   window.addEventListener("keyup", function(e) {
     console.log(e.key);
@@ -31,7 +34,13 @@ document.addEventListener("DOMContentLoaded", function() {
       body.style.display = "none";
     }
   });
+
   button.addEventListener("click", function() {
     play.play();
+  });
+
+  checkbox.addEventListener("change", function() {
+    dateInput.style.display =
+      dateInput.style.display === "inline-block" ? "none" : "inline-block";
   });
 });

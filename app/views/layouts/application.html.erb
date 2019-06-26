@@ -13,7 +13,9 @@
     <div class="container">
     <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
       <div class="left">
+      <% if current_user %>
         <%= render 'users/profile', user: current_user %>
+      <% end %>
         <%= render 'shared/trends', trends: @trends %>
       </div>
     <% else %>

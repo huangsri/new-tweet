@@ -1,9 +1,13 @@
 class Tweets::LikesController < ApplicationController
   def create
-    tweet = Tweet.find(params[:tweet_id])
+    @tweet = Tweet.find(params[:tweet_id])
+
     unless Like.find_by(user: current_user, tweet_id: params[:tweet_id])
-      if Like.create(user: current_user, tweet: tweet)
-        redirect_back(fallback_location: root_path)
+
+      if Like.create(user: current_user, tweet: @tweet)
+        respond_to do |format|
+          format.js
+        end
       else
         #Do Something
       end
@@ -11,9 +15,14 @@ class Tweets::LikesController < ApplicationController
   end
 
   def destroy
+    
     like = Like.find_by(user: current_user, tweet_id: params[:tweet_id])
+    
     if like.destroy
-      redirect_back(fallback_location: root_path)
+      @tweet = Tweet.find(params[:tweet_id])
+      respond_to do |format|
+        format.js
+      end
     else
     end
   end
