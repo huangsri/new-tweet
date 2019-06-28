@@ -4,6 +4,7 @@
       <%= fa_icon "twitter 3x", class: "color-primary logo" %>
     <% end %>
   </div>
+  <%= render 'shared/search' %>
   <% if current_user %>
     <p class="nav__user">Welcome back, <strong><%= current_user.username %></strong></p>
     <div class="nav__links">

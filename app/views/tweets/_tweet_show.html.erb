@@ -1,10 +1,6 @@
-<% if tweet.parent %>
+<% if tweet.parent && tweet.parent.content != tweet.content %>
   <%= render 'tweet_show', tweet: tweet.parent %>
 <% end %>
-
-
-
-
 <%= render 'tweet', tweet: tweet %>
 
 

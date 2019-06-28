@@ -1,5 +1,8 @@
-
-<%= render 'tweet_show', tweet: @tweet %>
+<% if @tweet.parent && @tweet.parent.content == @tweet.content %>
+  <%= render 'retweet', tweet: @tweet %>
+<% else %>
+  <%= render 'tweet_show', tweet: @tweet %>
+<% end %>
 <% if current_user %>
   <%= render 'tweet_form', path: tweet_reply_path(@tweet), placeholder: "Add a reply..." %>
 <% end %>

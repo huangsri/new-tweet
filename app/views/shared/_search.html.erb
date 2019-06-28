@@ -1,0 +1,9 @@
+
+
+<%= form_tag search_path, enforce_utf8: false, method: :get, class: 'search__container' do %>
+  <%= text_field_tag :search, params[:seach], placeholder: "Search Tweet", required: true %>
+    <%= label_tag :search, class: "search__icon", for: :search_submit do %>
+      <%= fa_icon "search 2x" %>
+    <% end %>
+  <%= submit_tag "search", hidden: true, id: :search_submit, name: nil %>
+<% end %>

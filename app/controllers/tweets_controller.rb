@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index
     # @tweets = Tweet.order('created_at DESC')
@@ -27,6 +27,13 @@ class TweetsController < ApplicationController
     tweet = Tweet.find(params[:id])
     tweet.destroy if tweet.user.id == current_user.id
     redirect_to root_path
+  end
+
+  def search
+    @search = params[:search]
+    if @search.present?
+      @tweets = Tweet.where("content ILIKE ?", "%#{@search}%").order("created_at DESC")
+    end
   end
 
   private

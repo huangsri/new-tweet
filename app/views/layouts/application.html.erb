@@ -27,8 +27,12 @@
     <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
       <div class="box right">
         <div class="thumbnail__heading">Who to follow</div>
-        <% @suggestions.each do |item| %>
-          <%= render 'shared/user_thumbnail', user: item %>
+        <% if @suggestions.size > 0%>
+          <% @suggestions.each do |item| %>
+            <%= render 'shared/user_thumbnail', user: item %>
+          <% end %>
+        <% else %>
+          Login to see who to follow!
         <% end %>
       </div>
     <% end %>

@@ -1,4 +1,8 @@
 <%= render 'users/profile', user: @user %>
-<% @user.tweets.each do |tweet| %>
-  <%=  render 'tweets/tweet', tweet: tweet %>
+<% @user.tweets.reverse.each do |tweet| %>
+  <% if tweet.retweet_content || tweet.parent && (tweet.content == tweet.parent.content) %>
+    <%= render 'tweets/retweet', tweet: tweet %>
+  <% else %>
+    <%= render 'tweets/tweet', tweet: tweet %>
+  <% end %>
 <% end %>

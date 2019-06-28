@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'users/:id/following', to: 'follows#following', as: 'following'
   get 'users/:id/followers', to: 'follows#followers', as: 'followers'
   get 'users/:id', to: 'users#show', as: 'user'
+  get 'search', to: 'tweets#search', as: 'search'
 
   resources :tweets, only: [:index, :create, :show, :destroy] do
     # get 'like', to: 'tweets/likes#index'

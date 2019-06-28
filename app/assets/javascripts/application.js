@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
     pressed.push(e.key);
     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
     if (pressed.join("").includes(secretCode)) {
-      console.log("DING DING!");
-      body.style.display = "none";
+      body.style.display = body.style.display === "none" ? "block" : "none";
+      play.play();
     }
   });
 
