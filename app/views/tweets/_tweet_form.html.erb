@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
   <div class="form__container">
     <%= form_for Tweet.new, url: path, html: { class: "form__control" } do |f| %>
-      <%= f.text_area :content, size: "60x1", required: true, class: "textarea", placeholder: placeholder %>
+      <%= f.text_area :content, size: "60x1", required: true, class: "textarea", placeholder: placeholder, maxlength: 256 %>
       <div class="form-group">
         <input type="checkbox" name="advance" id="advance">
         <label for="advance">Tweet in advance ?</label>
       </div>
       <div class="time">
-        <%= f.datetime_select :publish_at, default: Time.current %>
+        <%= f.datetime_select :publish_at, default: Time.current + 7.hours %>
       </div>
       <div class="flex-end">
         <%= f.submit "Tweet", class: "btn audio-button" %>

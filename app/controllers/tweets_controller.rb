@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
     @tweets = if current_user 
       current_user.get_tweets_by_following & Tweet.publish
     else
-      @tweets = Tweet.all.order('created_at DESC').page(params[:page])
+      @tweets = Tweet.all.order('created_at DESC')
     end
   end
 

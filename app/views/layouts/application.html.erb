@@ -13,31 +13,31 @@
     <%= audio_tag "nyan.mp3", class: "nyan-play" %>
     <%= render 'shared/navbar' %>
     <div class="container">
-    <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
-      <div class="left">
-      <% if current_user %>
-        <%= render 'users/profile', user: current_user %>
+      <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
+        <div class="left">
+          <% if current_user %>
+            <%= render 'users/profile', user: current_user %>
+          <% end %>
+          <%= render 'shared/trends', trends: @trends %>
+        </div>
+      <% else %>
+        <div></div>
       <% end %>
-        <%= render 'shared/trends', trends: @trends %>
-      </div>
-    <% else %>
-      <div></div>
-    <% end %>
       <div class="box main">
         <%= yield %>
       </div>
-    <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
-      <div class="box right">
-        <div class="thumbnail__heading">Who to follow</div>
-        <% if @suggestions.size > 0%>
-          <% @suggestions.each do |item| %>
-            <%= render 'shared/user_thumbnail', user: item %>
+      <% unless request.original_url.include?('login') || request.original_url.include?('register') %>
+        <div class="box right">
+          <div class="thumbnail__heading">Who to follow</div>
+          <% if @suggestions.size > 0%>
+            <% @suggestions.each do |item| %>
+              <%= render 'shared/user_thumbnail', user: item %>
+            <% end %>
+          <% else %>
+            Login to see who to follow!
           <% end %>
-        <% else %>
-          Login to see who to follow!
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
     </div>
   </body>
 </html>
