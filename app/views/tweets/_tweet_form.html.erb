@@ -7,7 +7,7 @@
         <label for="advance">Tweet in advance ?</label>
       </div>
       <div class="time">
-        <%= f.datetime_select :publish_at, default: Time.now %>
+        <%= f.datetime_select :publish_at, default: Time.current %>
       </div>
       <div class="flex-end">
         <%= f.submit "Tweet", class: "btn audio-button" %>

@@ -3,8 +3,11 @@
     <p class="tweet__author">@<%= tweet.user.username %> · <span class="gray"><%= time_ago_in_words(tweet.created_at) %> ago</span></p>
   <% end %>
   <%= link_to tweet_path(tweet) do %>
-    <p class="tweet__content"><%= tweet.content %></p>
+    <p class="tweet__content">
+      <% tweet.content.split(" ").each do |str| %>
+        <%= str.gsub(/\B#\w*[a-zA-Z]+\w*/, "<a href='/tags/#{str.delete('#')}' class='hash__links'>#{str}</a>").html_safe %>
+      <% end %>
+    </p>
   <% end %>
   <%= render 'tweets/tweet_controller', tweet: tweet %>
 </div>
-

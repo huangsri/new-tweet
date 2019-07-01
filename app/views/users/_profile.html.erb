@@ -6,18 +6,18 @@
   <div class="user__info">
     <div class="user__info-item">
       <p class="user__info-label">Tweets</p>
-      <p class="user__info-number"> <%= user.tweets.count %></p>
+      <p class="user__info-number"> <%= user.tweets.size %></p>
     </div>
       <div class="user__info-item">
         <%= link_to following_path(user) do %>
           <p class="user__info-label">Following</p>
-          <p class="user__info-number"> <%= user.following.count %></p>
+          <p class="user__info-number"> <%= user.following.size %></p>
         <% end %>
       </div>
     <div class="user__info-item">
       <%= link_to followers_path(user) do %>
         <p class="user__info-label">Followers</p>
-        <p class="user__info-number"> <%= user.followers.count %></p>
+        <p class="user__info-number"> <%= user.followers.size %></p>
       <% end %>
     </div>
   </div>

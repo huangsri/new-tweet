@@ -2,16 +2,16 @@ class Tweets::LikesController < ApplicationController
   def create
     @tweet = Tweet.find(params[:tweet_id])
 
-    unless Like.find_by(user: current_user, tweet_id: params[:tweet_id])
+    return if  Like.find_by(user: current_user, tweet_id: params[:tweet_id])
 
-      if Like.create(user: current_user, tweet: @tweet)
-        respond_to do |format|
-          format.js
-        end
-      else
-        #Do Something
+    if Like.create(user: current_user, tweet: @tweet)
+      respond_to do |format|
+        format.js
       end
+    else
+      #Do Something
     end
+
   end
 
   def destroy

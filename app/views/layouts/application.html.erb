@@ -6,9 +6,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://www.cornify.com/js/cornify.js" %>
   </head>
   <body>
     <%= audio_tag "twitter-sound.mp3", class: "audio-play"%>
+    <%= audio_tag "nyan.mp3", class: "nyan-play" %>
     <%= render 'shared/navbar' %>
     <div class="container">
     <% unless request.original_url.include?('login') || request.original_url.include?('register') %>

@@ -1,7 +1,9 @@
 class Tweet < ApplicationRecord
+  paginates_per 25
+
   belongs_to :user
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many  :liking_users, through: :likes, source: :user
 
   belongs_to :parent, class_name: "Tweet", foreign_key: :parent_id, optional: true
@@ -16,7 +18,7 @@ class Tweet < ApplicationRecord
   before_save :add_tags
 
   def self.publish 
-    where("publish_at <= '#{Time.now}'").or(where(publish_at: nil))
+    where("publish_at <= ?", Time.current).or(where(publish_at: nil))
   end
 
   private
@@ -25,7 +27,7 @@ class Tweet < ApplicationRecord
   end
   
   def extract_hash(string)
-    regex = /(?:|^)#[A-Za-z0-9\-\.]+(?:|$)/
+    regex = /\B#\w*[a-zA-Z]+\w*/
     string.scan(regex).map { |item| item.gsub(/#/, "") }
   end
 

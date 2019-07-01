@@ -194,3 +194,10 @@
   top: 20px;
   right: 20px;
 }
+
+a.hash {
+  &__links {
+    color: #91d2fa;
+    text-decoration: underline;
+  }
+}

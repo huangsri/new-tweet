@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :get_hash, :get_suggestion
 
   protected
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
@@ -14,11 +13,11 @@ class ApplicationController < ActionController::Base
 
   def get_suggestion
     if current_user
-      num = User.all.count
-      arr =* (1..num)
+      num = User.all.length
+      arr = (1..num).to_a
       arr.delete(current_user.id)
       arr = arr.shuffle
-      @suggestions = User.find(arr[0], arr[1], arr[2])
+      @suggestions = User.where(id: arr.first(3))
     else
       @suggestions = []
     end

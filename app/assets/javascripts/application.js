@@ -16,12 +16,14 @@
 //= require_tree .
 //= require jquery
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbolinks:load", function() {
+  console.log("loaded");
   const pressed = [];
   const secretCode = "`god";
   const body = document.querySelector("body");
   const button = document.querySelector(".audio-button");
   const play = document.querySelector(".audio-play");
+  const nyan = document.querySelector(".nyan-play");
   const checkbox = document.querySelector("#advance");
   const dateInput = document.querySelector(".time");
 
@@ -30,8 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
     pressed.push(e.key);
     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
     if (pressed.join("").includes(secretCode)) {
-      body.style.display = body.style.display === "none" ? "block" : "none";
+      // body.style.display = body.style.display === "none" ? "block" : "none";
       play.play();
+      nyan.play();
+      this.setInterval(cornify_add, 100);
     }
   });
 
